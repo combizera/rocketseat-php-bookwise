@@ -6,7 +6,7 @@
         </div>
         <div class="space-y-1">
             <a
-                href="/book.php?id=<?= $book['id'] ?>"
+                href="/book?id=<?= $book['id'] ?>"
                 class="font-semibold hover:underline"
             >
                 <?= $book['title'] ?>
