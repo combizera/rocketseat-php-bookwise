@@ -1,5 +1,5 @@
 <?php global $book; ?>
-<div class="p-2 rounded border-stone-800 bg-stone-900 border-2">
+<div class="p-2 rounded border-stone-800 bg-stone-900 border-2 mt-8">
     <div class="flex">
         <div class="w-1/3">
             img

@@ -11,4 +11,4 @@ $book = array_pop($filteredBook);
 
 $view = 'book';
 
-require 'views/template/app.php';
+require 'views/components/head.php';

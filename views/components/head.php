@@ -20,7 +20,7 @@
         </ul>
         <ul>
             <li>
-                <a href="/" class="hover:underline">Fazer Login</a>
+                <a href="/login" class="hover:underline">Fazer Login</a>
             </li>
         </ul>
     </nav>

@@ -12,4 +12,4 @@ $filteredBook = array_filter($books, function ($book) use ($id) {
 });
 $book = array_pop($filteredBook);
 
-view('book');
+view('book', compact('book'));

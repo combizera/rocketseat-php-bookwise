@@ -1,8 +1,11 @@
 <?php
 
-function view($view): void
+function view($view, $data = []): void
 {
-    require "views/{$view}.view.php";
+    foreach ($data as $key => $value) {
+        $$key = $value;
+    }
+    require "views/components/head.php";
 }
 
 function dd(...$dump): void

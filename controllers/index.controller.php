@@ -3,4 +3,4 @@
 //MODEL
 require 'data.php';
 
-view('index');
+view('index', compact('books'));
