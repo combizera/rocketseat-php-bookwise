@@ -4,9 +4,7 @@ global $books;
 
 $id = $_REQUEST['id'];
 
-$filteredBook = array_filter($books, function ($book) use ($id) {
-    return $book['id'] == $id;
-});
-$book = array_pop($filteredBook);
+$db = new DB();
+$book = $db->book($id);
 
 view('book', compact('book'));

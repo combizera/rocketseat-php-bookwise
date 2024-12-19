@@ -9,7 +9,7 @@
 <body class="bg-stone-950 text-stone-300">
 <header class="bg-stone-900">
     <nav class="mx-auto max-w-screen-lg flex justify-between px-8 py-4">
-        <a href="/index.php" class="font-bold text-xl tracking-wide">Book Wise</a>
+        <a href="/index" class="font-bold text-xl tracking-wide">Book Wise</a>
         <ul class="flex space-x-4 font-bold">
             <li>
                 <a href="/" class="text-lime-500">Explorar</a>

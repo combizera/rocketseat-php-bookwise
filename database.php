@@ -1,25 +1,36 @@
 <?php
 
-class BD
+use models\Book;
+
+class DB
 {
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new PDO('sqlite:database.sqlite');
+    }
+
     /**
      * @return array[Book]
      */
-    public function books(): array
+    public function books($id = null): array
     {
-        $db = new PDO('sqlite:database.sqlite');
-        $query = $db->query('SELECT * FROM books');
-        $items = $query->fetchAll();
-        $return = [];
+        $query = $this->db->query('SELECT * FROM books');
 
-        foreach ($items as $item) {
-            $book = new Book;
-            $book->id = $item['id'];
-            $book->title = $item['title'];
-            $book->author = $item['author'];
-            $book->description = $item['description'];
-            $return[]= $book;
-        }
-        return $return;
+        $items = $query->fetchAll();
+
+        return array_map(fn($item) => Book::make($item), $items);
+    }
+
+    public function book($id)
+    {
+        $sql = 'SELECT * FROM books';
+        $sql .= ' WHERE id = ' . $id;
+
+        $query = $this->db->query($sql);
+        $items = $query->fetchAll();
+
+        return array_map(fn($item) => Book::make($item), $items)[0];
     }
 }

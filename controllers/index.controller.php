@@ -1,6 +1,6 @@
 <?php
 
-$db = new BD();
+$db = new DB();
 $books = $db->books();
 
 view('index', compact('books'));

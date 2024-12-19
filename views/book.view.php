@@ -6,13 +6,13 @@
         </div>
         <div class="space-y-1">
             <a
-                href="/book?id=<?= $book['id'] ?>"
+                href="/book?id=<?= $book->id ?>"
                 class="font-semibold hover:underline"
             >
-                <?= $book['title'] ?>
+                <?= $book->title ?>
             </a>
             <div class="font-xs italic">
-                <?= $book['author'] ?>
+                <?= $book->author ?>
             </div>
             <div class="text-xs italic">
                 star (3 avaliações)
@@ -20,6 +20,6 @@
         </div>
     </div>
     <div class="text-sm mt-4">
-        <?= $book['description'] ?>
+        <?= $book->description ?>
     </div>
 </div>
