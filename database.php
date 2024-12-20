@@ -18,21 +18,19 @@ class DB
     {
         $prepare = $this->db->prepare("SELECT * FROM books WHERE title LIKE :search");
         $prepare->bindValue(':search', "%$search%");
+        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
         $prepare->execute();
 
-        $items = $prepare->fetchAll();
-
-        return array_map(fn($item) => Book::make($item), $items);
+        return $prepare->fetchAll();
     }
 
-    public function book($id)
+    public function book($id): Book
     {
-        $sql = 'SELECT * FROM books';
-        $sql .= ' WHERE id = ' . $id;
+        $prepare = $this->db->prepare("SELECT * FROM books WHERE id = :id");
+        $prepare->bindValue(':id', $id);
+        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
+        $prepare->execute();
 
-        $query = $this->db->query($sql);
-        $items = $query->fetchAll();
-
-        return array_map(fn($item) => Book::make($item), $items)[0];
+        return $prepare->fetch();
     }
 }
