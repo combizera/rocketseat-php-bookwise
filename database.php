@@ -13,7 +13,7 @@ class DB
         $this->db = new PDO($this->getDsn($config));
     }
 
-    private function getDsn($config)
+    private function getDsn($config): string
     {
         $driver = $config['driver'];
         unset($config['driver']);
@@ -28,7 +28,7 @@ class DB
         return $dsn;
     }
 
-    public function query($query, $class = null, $params = [])
+    public function query($query, $class = null, $params = []): PDOStatement
     {
         $prepare = $this->db->prepare($query);
 
