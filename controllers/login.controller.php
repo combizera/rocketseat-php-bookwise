@@ -1,3 +1,5 @@
 <?php
 
-view('login');
+$message = $_REQUEST['message'] ?? '';
+
+view('login', compact('message'));
