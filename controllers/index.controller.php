@@ -2,9 +2,7 @@
 
 $search = $_REQUEST['search'] ?? '';
 
-$db = new DB();
-
-$books = $db
+$books = $database
     ->query
     (
         "SELECT * FROM books WHERE title LIKE :search",

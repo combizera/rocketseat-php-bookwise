@@ -2,8 +2,7 @@
 
 $id = $_REQUEST['id'];
 
-$db = new DB();
-$book = $db
+$book = $database
     ->query
     (
         'SELECT * FROM books WHERE id = :id',
