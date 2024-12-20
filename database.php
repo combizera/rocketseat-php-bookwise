@@ -11,26 +11,17 @@ class DB
         $this->db = new PDO('sqlite:database.sqlite');
     }
 
-    /**
-     * @return array[Book]
-     */
-    public function books($search = ''): array
+    public function query($query, $class = null, $params = [])
     {
-        $prepare = $this->db->prepare("SELECT * FROM books WHERE title LIKE :search");
-        $prepare->bindValue(':search', "%$search%");
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
-        $prepare->execute();
+        $prepare = $this->db->prepare($query);
 
-        return $prepare->fetchAll();
-    }
+        if($class)
+        {
+            $prepare->setFetchMode(PDO::FETCH_CLASS, $class);
+        }
 
-    public function book($id): Book
-    {
-        $prepare = $this->db->prepare("SELECT * FROM books WHERE id = :id");
-        $prepare->bindValue(':id', $id);
-        $prepare->setFetchMode(PDO::FETCH_CLASS, Book::class);
-        $prepare->execute();
+        $prepare->execute($params);
 
-        return $prepare->fetch();
+        return $prepare;
     }
 }
