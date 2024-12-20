@@ -1,6 +1,6 @@
 <?php
 
 $db = new DB();
-$books = $db->books();
+$books = $db->books($_REQUEST['search'] ?? null);
 
 view('index', compact('books'));

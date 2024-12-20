@@ -14,11 +14,13 @@ class DB
     /**
      * @return array[Book]
      */
-    public function books($id = null): array
+    public function books($search = ''): array
     {
-        $query = $this->db->query('SELECT * FROM books');
+        $prepare = $this->db->prepare("SELECT * FROM books WHERE title LIKE :search");
+        $prepare->bindValue(':search', "%$search%");
+        $prepare->execute();
 
-        $items = $query->fetchAll();
+        $items = $prepare->fetchAll();
 
         return array_map(fn($item) => Book::make($item), $items);
     }
