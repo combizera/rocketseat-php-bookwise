@@ -41,16 +41,29 @@
             method="POST"
             class="px-4 space-y-4 mt-4"
         >
-            <?php if(strlen($message) > 0) { ?>
-                <div class="bg-green-800 text-green-400 px-4 py-2 rounded-md">
+            <?php if(isset($message) && strlen($message)) { ?>
+                <div class="bg-green-800 text-green-400 px-4 py-2 rounded-md text-sm font-bold">
                     <?= $message ?>
+                </div>
+            <?php } ?>
+
+            <?php //dd($_SESSION['validation']) ?>
+            <?php if(isset($_SESSION['validation']) && sizeof($_SESSION['validation'])) { ?>
+                <div class="bg-red-800 text-red-400 px-4 py-2 rounded-md text-sm font-bold">
+                    <ul>
+                        <li>Atention!</li>
+
+                        <?php foreach($_SESSION['validation'] as $error) { ?>
+                            <li><?= $error ?></li>
+                        <?php } ?>
+                    </ul>
                 </div>
             <?php } ?>
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-2" for="name" id="name">Nome</label>
                 <input
                     name="name"
-                    type="text" required
+                    type="text"
                     placeholder="Your Name"
                     class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
@@ -60,7 +73,7 @@
                 <label class="text-stone-400 mb-2" for="email" id="email">Email</label>
                 <input
                     name="email"
-                    type="email" required
+                    type="text"
                     placeholder="your@email.com"
                     class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
@@ -69,10 +82,10 @@
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-2" for="email_confirm" id="email_confirm">Confirm your Email</label>
                 <input
-                        name="email_confirm"
-                        type="email" required
-                        placeholder="your@email.com"
-                        class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
+                    name="email_confirm"
+                    type="text"
+                    placeholder="your@email.com"
+                    class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
             </div>
 
@@ -80,7 +93,7 @@
                 <label class="text-stone-400 mb-2" for="password">Password</label>
                 <input
                     name="password"
-                    type="password" required
+                    type="password"
                     placeholder="********"
                     class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
