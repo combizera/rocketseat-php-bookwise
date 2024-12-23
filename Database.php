@@ -2,9 +2,7 @@
 
 use models\Book;
 
-$database = new DB($config['database']);
-
-class DB
+class Database
 {
     private $db;
 
@@ -42,3 +40,5 @@ class DB
         return $prepare;
     }
 }
+
+$database = new Database($config['database']);
