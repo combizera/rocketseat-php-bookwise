@@ -8,11 +8,16 @@ function view($view, $data = []): void
     require "views/components/head.php";
 }
 
-function dd(...$dump): void
+function dump(...$dump): void
 {
     echo '<pre>';
     var_dump($dump);
     echo '</pre>';
+}
+
+function dd(...$dump): void
+{
+    dump($dump);
     die();
 }
 

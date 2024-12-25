@@ -2,7 +2,7 @@
 
 class Validation
 {
-    public $errors;
+    public $errors = [];
 
     public static function validate($rules, $data)
     {

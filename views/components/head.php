@@ -18,10 +18,26 @@
                 <a href="/my-books.php" class="hover:underline">Meus livros</a>
             </li>
         </ul>
-        <ul>
-            <li>
-                <a href="/login" class="hover:underline">Fazer Login</a>
-            </li>
+        <ul class="flex space-x-4">
+            <?php if(isset($_SESSION['auth'])): ?>
+                <li>
+                    <a href="/logout" class="hover:underline">
+                        Olá, <?= $_SESSION['auth']['name'] ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="/logout" class="hover:underline">
+                       Sair
+                    </a>
+                </li>
+
+            <?php else: ?>
+                <li>
+                    <a href="/login" class="hover:underline">
+                        Fazer Login
+                    </a>
+                </li>
+            <?php endif; ?>
         </ul>
     </nav>
 </header>

@@ -7,7 +7,7 @@
                 <label class="text-stone-400 mb-2" for="email" id="email">Email</label>
                 <input
                     name="email"
-                    type="email" required
+                    type="email"
                     placeholder="your@email.com"
                     class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
@@ -17,7 +17,7 @@
                 <label class="text-stone-400 mb-2" for="password">Password</label>
                 <input
                     name="password"
-                    type="password" required
+                    type="password"
                     placeholder="********"
                     class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full"
                 >
