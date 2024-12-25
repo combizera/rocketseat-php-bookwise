@@ -10,7 +10,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         'password' => ['required', 'min:8', 'max:16', 'strong']
     ], $_POST);
 
-    if($validation->fails()) {
+    if($validation->fails('register')) {
         header('location: /login');
         exit();
     }
@@ -24,8 +24,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
        ]
    );
 
-   header('location: /login?message=Registered successfully');
-   exit();
+    flash()->push('message', 'User created successfully!');
+    header('location: /login');
+    exit();
 }
 
 view('login');

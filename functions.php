@@ -27,3 +27,8 @@ function abort($code): void
     view($code);
     die();
 }
+
+function flash()
+{
+    return new Flash();
+}

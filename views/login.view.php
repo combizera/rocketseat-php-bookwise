@@ -3,6 +3,18 @@
     <div class="border border-stone-700 rounded">
         <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">Login</h1>
         <form method="POST" class="px-4 space-y-4 mt-4">
+            <?php if($errors = flash()->get('errors_login')) { ?>
+                <div class="bg-red-800 text-red-400 px-4 py-2 rounded-md text-sm font-bold">
+                    <ul>
+                        <li>Atention!</li>
+
+                        <?php foreach($errors as $error) { ?>
+                            <li><?= $error ?></li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            <?php } ?>
+
             <div class="flex flex-col">
                 <label class="text-stone-400 mb-2" for="email" id="email">Email</label>
                 <input
@@ -35,25 +47,21 @@
 
     <!-- REGISTER -->
     <div class="border border-stone-700 rounded">
-        <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">Register</h1>
+        <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">
+            Register
+        </h1>
+
         <form
             action="/register"
             method="POST"
             class="px-4 space-y-4 mt-4"
         >
-            <?php if(isset($message) && strlen($message)) { ?>
-                <div class="bg-green-800 text-green-400 px-4 py-2 rounded-md text-sm font-bold">
-                    <?= $message ?>
-                </div>
-            <?php } ?>
-
-            <?php //dd($_SESSION['validation']) ?>
-            <?php if(isset($_SESSION['validation']) && sizeof($_SESSION['validation'])) { ?>
+            <?php if($errors = flash()->get('errors_register')) { ?>
                 <div class="bg-red-800 text-red-400 px-4 py-2 rounded-md text-sm font-bold">
                     <ul>
                         <li>Atention!</li>
 
-                        <?php foreach($_SESSION['validation'] as $error) { ?>
+                        <?php foreach($errors as $error) { ?>
                             <li><?= $error ?></li>
                         <?php } ?>
                     </ul>

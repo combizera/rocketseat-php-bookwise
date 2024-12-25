@@ -73,9 +73,14 @@ class Validation
         }
     }
 
-    public function fails()
+    public function fails($name = null)
     {
-        $_SESSION['validation'] = $this->errors;
+        $key = 'errors';
+        if($name) {
+            $key .= "_$name";
+        }
+
+        flash()->push($key, $this->errors);
         return sizeof($this->errors) > 0;
     }
 }
