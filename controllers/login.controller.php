@@ -12,7 +12,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         'password' => ['required']
     ], $_POST);
 
-    if($validation->fails('login')) {
+    if($validation->fails('login'))
+    {
         header('location: /login');
         exit();
     }
@@ -21,13 +22,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         ->query("
             SELECT * 
             FROM users 
-            WHERE email = :email
-            AND password = :password",
+            WHERE email = :email",
         User::class,
-        compact('email', 'password'))
+        compact('email'))
         ->fetch();
 
-    if($user) {
+    if($user)
+    {
+        $passwordPost = $_REQUEST['password'];
+        $passwordHash = $user->password;
+
+        if(! password_verify($passwordPost, $passwordHash)) {
+            flash()->push('errors_login', ['User not found or password incorrect']);
+            header('location: /login');
+            exit();
+        }
+
         $_SESSION['auth'] = $user;
         flash()->push('message', 'Welcome back, ' . $user->name . '!');
         header('location: /');
