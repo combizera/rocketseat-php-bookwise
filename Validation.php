@@ -73,6 +73,28 @@ class Validation
         }
     }
 
+    private function unique($table, $field, $value)
+    {
+        if(strlen($value) == 0) {
+            return;
+        }
+
+        $database = new Database(config('database'));
+
+        $result = $database->query(
+            "
+                    SELECT *
+                    FROM $table 
+                    WHERE $field = :value
+                    ",
+            params: ["value" => $value]
+        )->fetch();
+
+        if($result) {
+            $this->errors[] = "The $field is already in use";
+        }
+    }
+
     public function fails($name = null)
     {
         $key = 'errors';
