@@ -1,4 +1,13 @@
-<?php global $book; ?>
+<?php
+    global $book;
+    $sumRating = array_reduce($reviews, function($carry, $review) {
+        return ($carry ?? 0) + $review->rating;
+    }) ?? 0;
+
+    $sumRating = round($sumRating / count($reviews));
+
+    $finalRating = str_repeat('⭐', $sumRating);
+?>
 <div class="p-2 rounded border-stone-800 bg-stone-900 border-2 mt-8">
     <div class="flex">
         <div class="w-1/3">
@@ -15,7 +24,7 @@
                 <?= $book->author ?>
             </div>
             <div class="text-xs italic">
-                star (3 avaliações)
+                <?= $finalRating ?>(<?= count($reviews) ?>) Avaliações
             </div>
         </div>
     </div>
@@ -29,8 +38,18 @@
     <h2>Reviews</h2>
 
     <div class="grid grid-cols-4 gap-4">
-        <div class="col-span-3">
-            lista
+        <div class="col-span-3 gap-4 grid">
+            <?php foreach($reviews as $item): ?>
+                <div class="border border-stone-700 rounded p-2">
+                    <h1 class="font-bold">
+                        <?= $item->review; ?>
+                    </h1>
+                    <?php
+                        $rating = str_repeat('⭐', $item->rating);
+                    ?>
+                    <?= $rating ?>
+                </div>
+            <?php endforeach; ?>
         </div>
 
         <div class="border border-stone-700 rounded">

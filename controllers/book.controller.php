@@ -1,5 +1,7 @@
 <?php
 
+use models\Review;
+
 $id = $_REQUEST['id'];
 
 $book = $database
@@ -11,4 +13,13 @@ $book = $database
     )
     ->fetch();
 
-view('book', compact('book'));
+$reviews = $database
+    ->query
+    (
+        'SELECT * FROM reviews WHERE book_id = :id',
+        Review::class,
+        ['id' => $_GET['id']]
+    )
+    ->fetchAll();
+
+view('book', compact('book', 'reviews'));
