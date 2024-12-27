@@ -19,10 +19,10 @@
                 </li>
             </ul>
             <ul class="flex space-x-4">
-                <?php if(isset($_SESSION['auth'])): ?>
+                <?php if(auth()): ?>
                     <li>
                         <a href="/logout" class="hover:underline">
-                            Olá, <?= $_SESSION['auth']->name ?>
+                            Olá, <?= auth()->name ?>
                         </a>
                     </li>
                     <li>

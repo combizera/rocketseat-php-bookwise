@@ -38,7 +38,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             exit();
         }
 
-        $_SESSION['auth'] = $user;
+        $_SESSION['auth'] = [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+        ];
         flash()->push('message', 'Welcome back, ' . $user->name . '!');
         header('location: /');
         exit();
