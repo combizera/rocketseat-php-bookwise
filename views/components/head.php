@@ -15,7 +15,7 @@
                     <a href="/" class="text-lime-500">Explorar</a>
                 </li>
                 <li>
-                    <a href="/my-books.php" class="hover:underline">Meus livros</a>
+                    <a href="/my-books" class="hover:underline">Meus livros</a>
                 </li>
             </ul>
             <ul class="flex space-x-4">

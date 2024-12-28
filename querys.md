@@ -15,7 +15,7 @@ CREATE TABLE users (
 
 ```mysql
 CREATE TABLE books (
-    id integer primary key,
+    id integer primary key AUTO_INCREMENT,
     user_id INTEGER,
     title VARCHAR(255),
     author VARCHAR(200),
