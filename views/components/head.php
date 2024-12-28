@@ -14,9 +14,11 @@
                 <li>
                     <a href="/" class="text-lime-500">Explorar</a>
                 </li>
-                <li>
-                    <a href="/my-books" class="hover:underline">Meus livros</a>
-                </li>
+                <?php if(auth()): ?>
+                    <li>
+                        <a href="/my-books" class="hover:underline">Meus livros</a>
+                    </li>
+                <?php endif; ?>
             </ul>
             <ul class="flex space-x-4">
                 <?php if(auth()): ?>
