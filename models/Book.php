@@ -10,4 +10,6 @@ class Book
     public $author;
     public $description;
     public $year;
+    public $rating;
+    public $reviews;
 }
