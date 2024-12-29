@@ -44,7 +44,13 @@ CREATE TABLE reviews (
 ## Users
 
 ```mysql
-INSERT INTO users (id, name, email, password) VALUES (1, 'Ygor Combi', 'ygor@combi.com', 'ygor@combi.com'), (2, 'Fulano', 'fulano@dasilva.com', 'fulano@dasilva.com');
+INSERT INTO users
+(
+    id, name, email, password
+)
+VALUES
+    (1, 'Ygor Combi', 'ygor@combi.com', 'ygor@combi.com'),
+    (2, 'Fulano', 'fulano@dasilva.com', 'fulano@dasilva.com');
 ```
 
 ## Books

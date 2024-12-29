@@ -2,7 +2,6 @@
 
 class Flash
 {
-
     public function push($key, $value)
     {
         $_SESSION["flash_$key"] = $value;
@@ -19,5 +18,4 @@ class Flash
 
         return $value;
     }
-
 }
