@@ -1,6 +1,6 @@
 <?php
 
-require 'Validation.php';
+require '../Validation.php';
 
 if($_SERVER['REQUEST_METHOD'] != 'POST') {
     header('Location: /my-books');
@@ -34,7 +34,7 @@ $newName = md5(rand());
 $extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
 $image = "images/$newName.$extension";
 
-move_uploaded_file($_FILES['image']['tmp_name'], $image);
+move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../public/' . $image);
 
 $database->query("
     INSERT INTO books (user_id, title, author, description, year, image)
