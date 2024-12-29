@@ -7,11 +7,6 @@ if(! auth()) {
     exit();
 }
 
-$books = $database
-    ->query(
-        "SELECT * FROM books WHERE user_id = :user_id",
-        Book::class,
-        params: ['user_id' => auth()->id])
-    ->fetchAll();
+$books = Book::my(auth()->id);
 
 view('my-books', compact('books'));
