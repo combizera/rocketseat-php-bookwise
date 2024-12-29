@@ -21,6 +21,7 @@ CREATE TABLE books (
     author VARCHAR(200),
     description TEXT,
     year integer,
+    image VARCHAR(255),
     FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 ```

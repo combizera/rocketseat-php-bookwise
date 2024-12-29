@@ -12,7 +12,7 @@
             <h1 class="border-b border-stone-700 text-stone-400 font-bold px-4 py-2">
                 Add new Book
             </h1>
-            <form method="POST" class="px-4 space-y-4 mt-4" action="/add-book">
+            <form method="POST" class="px-4 space-y-4 mt-4" action="/add-book" enctype="multipart/form-data">
                 <?php if($errors = flash()->get('errors_validations')) { ?>
                     <div class="bg-red-800 text-red-400 px-4 py-2 rounded-md text-sm font-bold">
                         <ul>
@@ -68,6 +68,15 @@
                             <option value="<?= $year ?>"><?= $year ?></option>
                         <?php endforeach; ?>
                     </select>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="image" class="text-stone-400 mb-">Image</label>
+                    <input
+                        id="image"
+                        name="image"
+                        type="file"
+                        class="border-stone-800 border-2 rounded-md bg-stone-900 text-sm focus:outline-none px-2 py-1 w-full">
                 </div>
 
                 <div class="flex flex-col">

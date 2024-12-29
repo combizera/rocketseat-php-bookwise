@@ -12,6 +12,7 @@ class Book
     public $year;
     public $rating;
     public $reviews;
+    public $image;
 
     public function query($where, $params)
     {
@@ -22,13 +23,13 @@ class Book
             (
                 "
                 select
-                b.id, b.title, b.author, b.description, b.year,
+                b.id, b.title, b.author, b.description, b.year, b.image,
                 ifnull(round(sum(r.rating) / 5), 0) as rating,
                 ifnull(count(r.id), 0) as reviews
                 from books b
                 left join reviews r on r.book_id = b.id
                 where $where
-                group by b.id, b.title, b.author, b.description, b.year
+                group by b.id, b.title, b.author, b.description, b.year, b.image
                 ",
                 self::class,
                 params: $params

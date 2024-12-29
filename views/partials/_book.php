@@ -1,9 +1,9 @@
 <div class="p-2 rounded border-stone-800 bg-stone-900 border-2 mt-8">
-    <div class="flex">
+    <div class="flex gap-2">
         <div class="w-1/3">
-            img
+            <img class="w-60 rounded" src="<?= $book->image ?>" alt="<?= $book->title ?>">
         </div>
-        <div class="space-y-1">
+        <div class="flex flex-col gap-2">
             <a
                 href="/book?id=<?= $book->id ?>"
                 class="font-semibold hover:underline"

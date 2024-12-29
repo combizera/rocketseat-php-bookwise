@@ -21,7 +21,7 @@ $validation = Validation::validate([
     'title' => ['required', 'min:3'],
     'author' => ['required'],
     'description' => ['required'],
-    'year' => ['required']
+    'year' => ['required'],
 ], $_POST);
 
 if($validation->fails('validations'))
@@ -30,10 +30,16 @@ if($validation->fails('validations'))
     exit();
 }
 
+$newName = md5(rand());
+$extension = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+$image = "images/$newName.$extension";
+
+move_uploaded_file($_FILES['image']['tmp_name'], $image);
+
 $database->query("
-    INSERT INTO books (user_id, title, author, description, year)
-    VALUES (:user_id, :title, :author, :description, :year)
-", params: compact('user_id', 'title', 'author', 'description', 'year'));
+    INSERT INTO books (user_id, title, author, description, year, image)
+    VALUES (:user_id, :title, :author, :description, :year, :image)
+", params: compact('user_id', 'title', 'author', 'description', 'year', 'image'));
 
 flash()->push('message', 'Book added successfully!');
 header('Location: /my-books');
