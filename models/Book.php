@@ -13,43 +13,46 @@ class Book
     public $rating;
     public $reviews;
 
-    public static function get($id)
+    public function query($where, $params)
     {
         $database = new \Database(config('database'));
 
         return $database
             ->query
             (
-                '
+                "
                 select
                 b.id, b.title, b.author, b.description, b.year,
-                round(sum(r.rating) / 5) as rating,
-                count(r.id) as reviews
+                ifnull(round(sum(r.rating) / 5), 0) as rating,
+                ifnull(count(r.id), 0) as reviews
                 from books b
                 left join reviews r on r.book_id = b.id
-                where b.id = :id
+                where $where
                 group by b.id, b.title, b.author, b.description, b.year
-                ',
+                ",
                 self::class,
-                compact('id')
-            )
+                params: $params
+            );
+    }
+
+    public static function get($id)
+    {
+        return (new self)
+            ->query('b.id = :id', ['id' => $id])
             ->fetch();
     }
 
-    public static function all()
+    public static function all($filter = '')
     {
-        return Book::all();
+        return (new self)
+            ->query('title like :filter', ['filter' => "%$filter%"])
+            ->fetchAll();
     }
 
-    public static function my($user_id)
+    public static function myBooks($user_id)
     {
-        $database = new \Database(config('database'));
-
-        return $database
-            ->query(
-                "SELECT * FROM books WHERE user_id = :user_id",
-                self::class,
-                params: compact('user_id')
+        return (new self)
+            ->query('b.user_id = :user_id', ['user_id' => $user_id])
             ->fetchAll();
     }
 }

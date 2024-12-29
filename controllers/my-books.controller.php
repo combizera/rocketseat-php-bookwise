@@ -7,6 +7,6 @@ if(! auth()) {
     exit();
 }
 
-$books = Book::my(auth()->id);
+$books = Book::myBooks(auth()->id);
 
 view('my-books', compact('books'));

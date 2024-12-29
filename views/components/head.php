@@ -16,7 +16,7 @@
                 </li>
                 <?php if(auth()): ?>
                     <li>
-                        <a href="/my-books" class="hover:underline">Meus livros</a>
+                        <a href="/my-books" class="hover:underline">My Books</a>
                     </li>
                 <?php endif; ?>
             </ul>
@@ -24,12 +24,12 @@
                 <?php if(auth()): ?>
                     <li>
                         <a href="/logout" class="hover:underline">
-                            Olá, <?= auth()->name ?>
+                            Hello, <?= auth()->name ?>
                         </a>
                     </li>
                     <li>
                         <a href="/logout" class="hover:underline">
-                           Sair
+                           Logout
                         </a>
                     </li>
 

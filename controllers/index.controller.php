@@ -2,13 +2,6 @@
 
 $search = $_REQUEST['search'] ?? '';
 
-$books = $database
-    ->query
-    (
-        "SELECT * FROM books WHERE title LIKE :search",
-        \models\Book::class,
-        [':search' => "%$search%"]
-    )
-    ->fetchAll();
+$books = \models\Book::all($search);
 
 view('index', compact('books'));
